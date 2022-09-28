@@ -1,0 +1,29 @@
+
+version: "3"
+
+
+services:
+  
+  server:
+    build: server/
+
+    
+    command: node app.js
+
+    image: duypeo1999/server
+    ports:
+      - 8888:8888
+
+ 
+  client:
+  
+    build: client/
+
+    command: flutter run -d web-server --web-hostname 0.0.0.0 --web-port 9999
+
+    image: duypeo1999/client
+    ports:
+      - 9999:9999
+
+    depends_on:
+      - server
